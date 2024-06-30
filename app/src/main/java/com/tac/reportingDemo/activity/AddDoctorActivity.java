@@ -110,7 +110,6 @@ public class AddDoctorActivity extends AppCompatActivity {
     private MySharedPreferences sp;
     private RequestQueue mRequestQue;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
