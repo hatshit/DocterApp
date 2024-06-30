@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:id="@+id/add">
+        <item android:title="Master">
+            <menu>
+
+                <item
+                    android:id="@+id/addDoctor"
+                    android:icon="@drawable/ic_doctor"
+                    android:title="Add Doctor"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/addChemist"
+                    android:icon="@drawable/ic_chemist"
+                    android:title="Add Chemist"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/myDoctor"
+                    android:icon="@drawable/ic_doctor"
+                    android:title="My Doctors"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/myChemist"
+                    android:icon="@drawable/ic_chemist"
+                    android:title="My Chemists"
+                    app:showAsAction="never" />
+
+
+            </menu>
+        </item>
+
+    </group>
+
+
+    <group android:id="@+id/dcr">
+
+        <item android:title="DCR">
+            <menu>
+                <item
+                    android:id="@+id/doctorDcr"
+                    android:icon="@drawable/ic_first_aid_kit"
+                    android:title="Doctor's DCR"
+                    app:showAsAction="never" />
+
+<!--                <item-->
+<!--                    android:id="@+id/doctorDcrReport"-->
+<!--                    android:icon="@drawable/ic_first_aid_kit"-->
+<!--                    android:title="Upload DCR Report"-->
+<!--                    app:showAsAction="never" />-->
+                <item
+                    android:id="@+id/chemistDcr"
+                    android:icon="@drawable/ic_chemist"
+                    android:title="Chemist's DCR"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/dcrReport"
+                    android:icon="@drawable/ic_report"
+                    android:title="Doctor's DCR Report"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/chemistDCRReport"
+                    android:icon="@drawable/ic_report"
+                    android:title="Chemist's DCR Report"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/reportDesignation"
+                    android:icon="@drawable/ic_report"
+                    android:title="Reports"
+                    app:showAsAction="never" />
+
+                <item
+                    android:id="@+id/missedReport"
+                    android:icon="@drawable/ic_report"
+                    android:title="Missed Reports"
+                    app:showAsAction="never" />
+
+            </menu>
+        </item>
+
+    </group>
+
+
+    <group android:id="@+id/tour">
+        <item android:title="Tour">
+            <menu>
+
+                <item
+                    android:id="@+id/planTour"
+                    android:icon="@drawable/ic_tour"
+                    android:title="Plan Tour"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/tourReport"
+                    android:icon="@drawable/ic_report"
+                    android:title="Tour Report"
+                    app:showAsAction="never" />
+            </menu>
+        </item>
+
+    </group>
+
+    <group android:id="@+id/expense">
+        <item android:title="Expense">
+            <menu>
+                <item
+                    android:id="@+id/addExpense"
+                    android:icon="@drawable/ic_rupee"
+                    android:title="Add Expense"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/expenseReport"
+                    android:icon="@drawable/ic_report"
+                    android:title="Expense Report"
+                    app:showAsAction="never" />
+            </menu>
+        </item>
+
+    </group>
+
+
+    <group>
+        <item
+            android:id="@+id/leaveApp"
+            android:icon="@drawable/ic_leave_application"
+            android:title="Leave Application"
+            app:showAsAction="never" />
+    </group>
+    <group>
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Logout"
+            app:showAsAction="never" />
+    </group>
+</menu>

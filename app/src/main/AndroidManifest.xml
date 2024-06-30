@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+
+    <application
+        android:name=".infratructure.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activity.DCRReportActivity"
+            android:exported="false" />
+
+        <service
+            android:name=".service.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_noti" />
+
+        <activity
+            android:name=".activity.MyChemistActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.MyDoctorsActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ChangePasswordActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.AddVisitActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ProductActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.chemist.AddChemistActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.AddDoctorActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.SelectAreaForReportActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.SelectDoctorForReportActivity"
+            android:parentActivityName=".activity.SelectAreaForReportActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.SelectAreaForReportActivity" />
+        </activity>
+        <activity
+            android:name=".activity.chemist.SelectChemistAreaForReportActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.chemist.SelectChemistForReportActivity"
+            android:parentActivityName=".activity.chemist.SelectChemistAreaForReportActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.chemist.SelectChemistAreaForReportActivity" />
+        </activity>
+        <activity
+            android:name=".activity.LeaveApplicationActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ExpenseDetailsActivity"
+            android:parentActivityName=".activity.ExpenseReportActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.ExpenseReportActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ExpenseReportActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.AddExpenseActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ViewTourReportActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.AddTourActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.chemist.ChemistReportDetailsActivity"
+            android:parentActivityName=".activity.chemist.SelectChemistForReportActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.chemist.SelectChemistForReportActivity" />
+        </activity>
+        <activity
+            android:name=".activity.ReportDetailsActivity"
+            android:parentActivityName=".activity.SelectDoctorForReportActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.SelectDoctorForReportActivity" />
+        </activity>
+        <activity android:name=".activity.DoctorsReportActivity" />
+        <activity
+            android:name=".activity.EditSampleActivity"
+            android:parentActivityName=".activity.BillingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.BillingActivity" />
+        </activity>
+        <activity
+            android:name=".activity.EditGiftActivity"
+            android:parentActivityName=".activity.BillingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.BillingActivity" />
+        </activity>
+        <activity
+            android:name=".activity.EditProductActivity"
+            android:parentActivityName=".activity.BillingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.BillingActivity" />
+        </activity>
+
+        <receiver android:name=".service.UpdateNoticationService" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".activity.AddSampleActivity"
+            android:parentActivityName=".activity.BillingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.BillingActivity" />
+        </activity>
+        <activity
+            android:name=".activity.AddGiftActivity"
+            android:parentActivityName=".activity.BillingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.BillingActivity" />
+        </activity>
+        <activity
+            android:name=".activity.AddProductsActivity"
+            android:parentActivityName=".activity.BillingActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.BillingActivity" />
+        </activity>
+        <activity
+            android:name=".activity.chemist.ChemistBillingActivity"
+            android:parentActivityName=".activity.chemist.SelectChemistActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.chemist.SelectChemistActivity" />
+        </activity>
+        <activity
+            android:name=".activity.chemist.SelectChemistActivity"
+            android:parentActivityName=".activity.chemist.SelectChemistAreaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.chemist.SelectChemistAreaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.chemist.SelectChemistAreaActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.BillingActivity"
+            android:parentActivityName=".activity.SelectDoctorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.SelectDoctorActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.AddNotesActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+
+        <activity
+            android:name=".activity.SelectDoctorActivity"
+            android:parentActivityName=".activity.SelectAreaActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.SelectAreaActivity" />
+        </activity>
+        <activity
+            android:name=".activity.SelectAreaActivity"
+            android:parentActivityName=".activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tac.reportingDemo.activity.HomeActivity" />
+        </activity>
+        <activity android:name=".activity.HomeActivity" />
+
+
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.MissedReportsActivity" />
+        <activity android:name=".activity.ReportDesignationActivity" />
+        <activity android:name=".activity.ProductListActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCubA4i17VsTcoKSkgmgRzymJl5l9afDv8"/>
+
+
+        <activity android:name=".activity.MapsActivity" />
+    </application>
+
+</manifest>

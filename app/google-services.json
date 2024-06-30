@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "123332280146",
+    "project_id": "reportingplus-dcr",
+    "storage_bucket": "reportingplus-dcr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123332280146:android:6427ffdfc08458152f848b",
+        "android_client_info": {
+          "package_name": "com.wellpet.mr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "123332280146-6r8sd6683ub40k6a4p4ags05k6u0027v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5KkBvTMapzAO4NpBFdf9YIZ9rylh9uQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "123332280146-6r8sd6683ub40k6a4p4ags05k6u0027v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

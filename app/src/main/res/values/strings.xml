@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Reporting +</string>
+    <string name="no_internet">No Internet Connection Available</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="something_went_wrong">Oops! Something Went Wrong.</string>
+    <string name="current_date">SUN, 17 MAR (TODAY)</string>
+    <string name="current_time">12:33 PM</string>
+    <string name="field_work">FIELD WORK</string>
+    <string name="work_with">Work With</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="custom_field_work">Custom-Field Work</string>
+    <string name="feedback_action_discussion">Feedback/Action/Discussion</string>
+    <string name="this_report_needs_to_be_approved">This report needs to be approved.</string>
+    <string name="why">Why?</string>
+    <string name="save">Save</string>
+    <string name="product">Product</string>
+</resources>
