@@ -40,6 +40,7 @@
         <item android:title="DCR">
             <menu>
                 <item
+                    android:visible="false"
                     android:id="@+id/doctorDcr"
                     android:icon="@drawable/ic_first_aid_kit"
                     android:title="Doctor's DCR"
@@ -51,17 +52,20 @@
 <!--                    android:title="Upload DCR Report"-->
 <!--                    app:showAsAction="never" />-->
                 <item
+                    android:visible="false"
                     android:id="@+id/chemistDcr"
                     android:icon="@drawable/ic_chemist"
                     android:title="Chemist's DCR"
                     app:showAsAction="never" />
                 <item
+                    android:visible="false"
                     android:id="@+id/dcrReport"
                     android:icon="@drawable/ic_report"
                     android:title="Doctor's DCR Report"
                     app:showAsAction="never" />
 
                 <item
+                    android:visible="false"
                     android:id="@+id/chemistDCRReport"
                     android:icon="@drawable/ic_report"
                     android:title="Chemist's DCR Report"

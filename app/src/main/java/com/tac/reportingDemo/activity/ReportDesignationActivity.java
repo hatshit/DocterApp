@@ -3,10 +3,12 @@ package com.tac.reportingDemo.activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -80,6 +82,18 @@ public class ReportDesignationActivity extends AppCompatActivity {
     TextView tvToDate;
     @BindView(R.id.pb)
     ProgressBar mPb;
+
+    @BindView(R.id.viewDetails)
+    Button mViewDetails;
+
+    @BindView(R.id.txtEmploye)
+    TextView txtEmploye;
+
+    @BindView(R.id.txtSelf)
+    TextView txtSelf;
+
+    @BindView(R.id.layoutArea)
+    LinearLayout layoutArea;
     private RequestQueue mRequestQue;
     private MySharedPreferences sp;
     private int mYear, mMonth, mDay, mHour, mMinute;
@@ -112,6 +126,37 @@ public class ReportDesignationActivity extends AppCompatActivity {
                 } else if (checkedId == R.id.rbDoctor) {
                     strType = "doctor";
                 }
+
+            }
+        });
+
+        txtSelf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtSelf.setTextColor(getResources().getColor(R.color.colorPrimary));
+                txtEmploye.setTextColor(getResources().getColor(R.color.white));
+
+                empRid =sp.getUserInfo(Constants.R_ID);
+                txtEmploye.setBackgroundResource(R.drawable.button_background);
+                txtSelf.setBackgroundResource(R.drawable.btn_line_border);
+                layoutArea.setVisibility(View.GONE);
+            }
+        });
+
+        txtEmploye.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtSelf.setTextColor(getResources().getColor(R.color.white));
+                txtEmploye.setTextColor(getResources().getColor(R.color.colorPrimary));
+                txtEmploye.setBackgroundResource(R.drawable.btn_line_border);
+                txtSelf.setBackgroundResource(R.drawable.button_background);
+                layoutArea.setVisibility(View.VISIBLE);
+            }
+        });
+
+        mViewDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 checkValidation();
             }
         });
@@ -205,6 +250,8 @@ public class ReportDesignationActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please select to date", Toast.LENGTH_SHORT).show();
         } else if (empRid.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please select to employee", Toast.LENGTH_SHORT).show();
+        } else if (strType.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please select to type Docter and chemist.", Toast.LENGTH_SHORT).show();
         } else {
             checkNetworkAndFetchData();
         }
@@ -375,4 +422,12 @@ public class ReportDesignationActivity extends AppCompatActivity {
         mRequestQue.add(request);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
