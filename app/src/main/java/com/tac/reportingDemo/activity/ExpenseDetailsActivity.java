@@ -2,7 +2,10 @@ package com.tac.reportingDemo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -72,7 +75,12 @@ public class ExpenseDetailsActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setTitle("Expense Details");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//toolbaar caolor
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
     }
 }

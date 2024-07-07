@@ -8,4 +8,5 @@ public class Constants {
     public static final String MOBILE = "mobile";
     public static final String R_ID = "r_id";
     public static final String HQ_id = "hq_id";
+    public static final String HQ_name = "hq_name";
 }

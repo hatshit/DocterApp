@@ -165,14 +165,15 @@
                         android:textColor="@color/colorPrimary"/>
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
+                        android:background="@drawable/edt_border_line"
                         android:minHeight="70dp"
                         android:gravity="top|start"
                         android:lines="4"
                         android:id="@+id/remark"
                         android:inputType="textMultiLine"
                         android:maxLength="100"
-                        android:backgroundTint="@color/colorPrimary"/>
+                       />
 
                 </LinearLayout>
 

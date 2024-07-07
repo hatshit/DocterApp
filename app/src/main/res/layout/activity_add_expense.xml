@@ -45,7 +45,8 @@
             <EditText
                 android:id="@+id/placeFrom"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
                 android:inputType="textMultiLine"
@@ -66,7 +67,8 @@
             <EditText
                 android:id="@+id/placeTo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
                 android:inputType="textMultiLine"
@@ -88,7 +90,8 @@
             <EditText
                 android:id="@+id/workDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
                 android:focusable="false"
@@ -110,7 +113,8 @@
             <EditText
                 android:id="@+id/mode"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
 
                 android:backgroundTint="@color/colorAccent"
@@ -131,7 +135,8 @@
             <EditText
                 android:id="@+id/allowance"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
                 android:inputType="number"
@@ -153,7 +158,8 @@
             <EditText
                 android:id="@+id/misamount"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
                 android:inputType="number"
@@ -176,7 +182,8 @@
                 android:focusable="false"
                 android:id="@+id/deduction"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
                 android:inputType="number"
@@ -200,7 +207,8 @@
             <EditText
                 android:id="@+id/totalAmount"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
 
@@ -223,7 +231,8 @@
             <EditText
                 android:id="@+id/remark"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
                 android:gravity="top|start"

@@ -115,16 +115,9 @@ public class LoginActivity extends AppCompatActivity {
 //        mPassword.setText("admin@123");
 //loginBypass();
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
-            return;
+        Intent intent = getIntent();
+        if (!intent.hasExtra("logout")) {
+            requestedPermission();
         }
     }
 
@@ -171,12 +164,14 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject data = dataArray.getJSONObject(0);
                         String rid = data.getString("RId");
                         String hq_id = data.getString("HQid");
+                        String hq_name = data.getString("HQ");
                         FirebaseMessaging.getInstance().subscribeToTopic("notice");
                         sp.setUserInfo(Constants.USERNAME, username);
                         sp.setLoginSteps("1");
                         sp.setUserInfo(Constants.NAME, data.getString("Name"));
                         sp.setUserInfo(Constants.R_ID, rid);
                         sp.setHQID(Constants.HQ_id, hq_id);
+                        sp.setHQName(Constants.HQ_name, hq_name);
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
@@ -233,6 +228,20 @@ public void loginBypass(){
     startActivity(intent);
 
 }
+
+    public void requestedPermission()
+    {
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new
+                            String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_LOCATION_PERMISSION);
+            return;
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

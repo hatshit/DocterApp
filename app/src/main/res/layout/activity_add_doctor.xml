@@ -33,24 +33,23 @@
             android:orientation="vertical">
 
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:drawableStart="@drawable/ic_person_outline_accent"
                 android:drawablePadding="3dp"
                 android:text="Doctor's Name"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
+
 
             <EditText
                 android:id="@+id/name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/colorAccent"
                 android:textSize="16sp" />
-
 
             <TextView
 
@@ -60,15 +59,15 @@
                 android:drawableStart="@drawable/ic_phone_"
                 android:drawablePadding="3dp"
                 android:text="Mobile No. "
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/mobile"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/colorAccent"
+                android:background="@drawable/edt_border_line"
                 android:inputType="number"
                 android:maxLength="12"
                 android:textSize="16sp" />
@@ -81,15 +80,15 @@
                 android:drawableStart="@drawable/ic_mail"
                 android:drawablePadding="3dp"
                 android:text="Email Address"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/colorAccent"
                 android:textSize="16sp" />
 
             <TextView
@@ -100,15 +99,15 @@
                 android:drawableStart="@drawable/ic_hospital"
                 android:drawablePadding="3dp"
                 android:text="Hospital Name "
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/hospital"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/colorAccent"
                 android:textSize="16sp" />
 
             <TextView
@@ -119,15 +118,15 @@
                 android:drawableStart="@drawable/ic_calender_accent"
                 android:drawablePadding="3dp"
                 android:text="D.O.B"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/dob"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/colorAccent"
                 android:focusable="false"
                 android:textSize="16sp" />
 
@@ -140,15 +139,15 @@
                 android:drawableStart="@drawable/ic_qualification"
                 android:drawablePadding="3dp"
                 android:text="Qualification "
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/qualification"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/colorAccent"
                 android:textSize="16sp" />
 
             <TextView
@@ -159,15 +158,15 @@
                 android:drawableStart="@drawable/ic_speciality"
                 android:drawablePadding="3dp"
                 android:text="Specialist In "
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/specialist"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/colorAccent"
                 android:textSize="16sp" />
 
             <TextView
@@ -178,7 +177,7 @@
                 android:drawableStart="@drawable/ic_city"
                 android:drawablePadding="3dp"
                 android:text="Area "
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp"
                 />
 
@@ -192,9 +191,9 @@
                     android:id="@+id/area"
 
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
+                    android:background="@drawable/edt_border_line"
                     android:layout_marginTop="5dp"
-                    android:backgroundTint="@color/colorAccent"
                     android:focusable="false"
                     android:maxLength="25"
                     android:textSize="16sp" />
@@ -203,7 +202,8 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:id="@+id/addArea"
-                    android:src="@drawable/ic_add_area"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:background="@drawable/ic_add_area"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     />
@@ -220,7 +220,7 @@
                 android:drawableStart="@drawable/ic_home"
                 android:drawablePadding="3dp"
                 android:text="Address "
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -232,10 +232,10 @@
                 <EditText
                     android:id="@+id/address"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
+                    android:background="@drawable/edt_border_line"
                     android:layout_weight="7"
                     android:layout_marginTop="5dp"
-                    android:backgroundTint="@color/colorAccent"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -256,7 +256,7 @@
                 android:drawableStart="@drawable/ic_city"
                 android:drawablePadding="3dp"
                 android:text="City "
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp"
                 />
 
@@ -264,9 +264,9 @@
                 android:id="@+id/city"
 
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/colorAccent"
                 android:focusable="false"
                 android:maxLength="25"
                 android:textSize="16sp" />
@@ -280,15 +280,15 @@
                 android:drawableStart="@drawable/ic_state"
                 android:drawablePadding="3dp"
                 android:text="State "
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/state"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/colorAccent"
                 android:maxLength="25"
                 android:textSize="16sp" />
 
@@ -301,15 +301,15 @@
                 android:drawableStart="@drawable/ic_country"
                 android:drawablePadding="3dp"
                 android:text="Country "
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/country"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
-                android:backgroundTint="@color/colorAccent"
                 android:maxLength="25"
                 android:textSize="16sp" />
 
@@ -325,6 +325,7 @@
                 android:textColor="@color/white" />
 
         </LinearLayout>
+
     </ScrollView>
 
 </RelativeLayout>

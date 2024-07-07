@@ -11,6 +11,8 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -51,6 +53,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -248,7 +252,8 @@ public class HomeActivity extends AppCompatActivity implements
         setSupportActionBar(mToolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setTitle("Dashboard");
-
+        mToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
+        mHq.setText(sp.getHq_ame(Constants.HQ_name));
         mRequestQue = MyVolley.getInstance().getRequestQueue();
 
         showDashboardData();
@@ -1251,7 +1256,7 @@ public class HomeActivity extends AppCompatActivity implements
 
                             mDesignation.setText(data.getString("designation"));
                             mResign.setText(data.getString("resign"));
-                            mHq.setText(data.getString("hq"));
+                          //  mHq.setText(data.getString("hq"));
 
                             JSONArray newsArray = data.getJSONArray("newsnotice");
 
@@ -1324,6 +1329,7 @@ public class HomeActivity extends AppCompatActivity implements
 
         sp.clearData();
         Intent intent = new Intent(this, LoginActivity.class);
+        intent.putExtra("logout","home");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

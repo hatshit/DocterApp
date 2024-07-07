@@ -104,6 +104,13 @@ public class MySharedPreferences {
 
     }
 
+    public void setHQName(String key, String value) {
+        mSharedPreferences.edit().putString(key, value).apply();
+    }
+    public String getHq_ame(String key) {
+        return mSharedPreferences.getString(key, DEFAULT);
+    }
+
     public boolean isSubscribed(){
         return mSharedPreferences.getBoolean("isSubscribed",false);
     }

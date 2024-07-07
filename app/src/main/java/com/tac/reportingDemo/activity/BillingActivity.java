@@ -571,7 +571,8 @@ public class BillingActivity extends AppCompatActivity {
                 }
 
                 try {
-                    params.put("checkout_image", strImage);
+                    String dataUrl = "data:image/jpeg;base64," + strImage;
+                    params.put("checkout_image", dataUrl);
                 } catch (Exception e) {
                     params.put("checkout_image", "checkout_image :"+e.getMessage());
                 }
@@ -798,6 +799,7 @@ public class BillingActivity extends AppCompatActivity {
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("File DCR");
+        mToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
 //        getSupportActionBar().setTitle("Doctor DCR");
 
     }
@@ -1031,7 +1033,7 @@ public class BillingActivity extends AppCompatActivity {
 
     public String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
         byte[] byteFormat = stream.toByteArray();
 
         // Get the Base64 string

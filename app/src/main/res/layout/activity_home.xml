@@ -4,14 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer"
+    android:backgroundTint="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.HomeActivity">
+    tools:context=".activity.HomeActivity"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <include layout="@layout/toolbar" />
+
+        <include layout="@layout/toolbar"
+            />
 
 
         <include
@@ -21,438 +25,525 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
 
-        <LinearLayout
-            android:id="@+id/parent"
+        <ScrollView
+            android:layout_below="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
+            >
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@color/white"
-                android:orientation="horizontal">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="120dp"
-                    android:id="@+id/imgView"
-                    android:layout_height="120dp"
-                    android:layout_margin="10dp"
-                    android:src="@drawable/ic_salesman" />
-
+                >
                 <LinearLayout
+                    android:background="@color/offwhite"
+                    android:id="@+id/parent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
                     android:orientation="vertical">
 
+                    <androidx.cardview.widget.CardView
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/white"
+                            android:orientation="horizontal">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="50dp"
+                                android:id="@+id/imgView"
+                                android:layout_height="50dp"
+                                android:layout_margin="10dp"
+                                android:src="@drawable/ic_salesman" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/black"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+
+                                    />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="15dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Designation: "
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:singleLine="true"
+                                        android:id="@+id/designation"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:textColor="@color/black"
+                                        android:textSize="14sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal"
+                                    android:visibility="gone">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Resign: "
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:id="@+id/resign"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp" />
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Headquarter: "
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp" />
+
+                                    <TextView
+                                        android:id="@+id/hq"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:singleLine="true"
+                                        android:textColor="@color/black"
+                                        android:textSize="14dp" />
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="@dimen/cardview_default_elevation"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:text="My Visit"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/checkbox_stroke_color" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="current date"
+                                    android:textSize="14dp"
+
+                                    />
+
+                                <TextView
+                                    android:id="@+id/txtCurrentDate"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="current date"
+                                    android:textSize="14dp" />
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:padding="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:id="@+id/layoutDepartment"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="10dp"
+                                    android:orientation="horizontal"
+                                    android:padding="5dp"
+                                    android:visibility="visible"
+                                    android:weightSum="3">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="2"
+                                        android:text="Department :"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp" />
+
+                                    <LinearLayout
+                                        android:orientation="vertical"
+                                        android:layout_weight="1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        >
+
+                                        <Spinner
+                                            android:textSize="20sp"
+                                            android:layout_marginRight="-10dp"
+                                            android:backgroundTint="@color/black"
+                                            android:id="@+id/spinnerDepartment"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:hint="Select Department"
+                                            android:textColor="#000000"
+                                            />
+
+                                        <View
+                                            android:layout_marginEnd="30dp"
+                                            android:layout_marginStart="10dp"
+                                            android:layout_marginTop="5dp"
+                                            android:background="@color/black"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="1dp"
+                                            >
+                                        </View>
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                    android:id="@+id/layoutArea"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="horizontal"
+                                    android:padding="5dp"
+                                    android:visibility="visible"
+                                    android:weightSum="3">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="2"
+                                        android:textColor="@color/black"
+                                        android:text="Area :"
+                                        android:textSize="16sp" />
+
+                                    <!--                            <Spinner-->
+                                    <!--                                android:id="@+id/spinnerArea"-->
+                                    <!--                                android:layout_width="match_parent"-->
+                                    <!--                                android:layout_height="wrap_content"-->
+                                    <!--                                android:layout_marginLeft="20dp"-->
+                                    <!--                                android:layout_weight="1"-->
+                                    <!--                                android:hint="Select Area "-->
+                                    <!--                                android:textColor="#000000" />-->
+                                    <AutoCompleteTextView
+                                        android:id="@+id/spinnerArea"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_weight="1"
+                                        android:textCursorDrawable="@drawable/blue_cursor"
+                                        android:hint="Select Area"
+                                        android:textColor="#000000" />
+                                    <ImageView
+                                        android:layout_gravity="center"
+                                        android:id="@+id/btnAreaList"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:padding="10dp"
+                                        android:src="@drawable/drop_down_arrow"/>
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:id="@+id/layoutDoctor"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:orientation="horizontal"
+                                    android:padding="5dp"
+                                    android:visibility="visible"
+                                    android:weightSum="3">
+
+                                    <TextView
+                                        android:id="@+id/txtDeptType"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="2"
+                                        android:text="Doctor :"
+                                        android:textColor="@color/black"
+                                        android:textSize="16sp" />
+
+                                    <AutoCompleteTextView
+                                        android:id="@+id/spinnerDoctor"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="20dp"
+                                        android:layout_weight="1"
+                                        android:textCursorDrawable="@drawable/blue_cursor"
+                                        android:hint="Select Doctor"
+                                        android:textColor="#000000" />
+                                    <ImageView
+                                        android:layout_gravity="center"
+                                        android:id="@+id/btnDocList"
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:padding="10dp"
+                                        android:src="@drawable/drop_down_arrow"/>
+                                    <!--                            <Spinner-->
+                                    <!--                                android:id="@+id/spinnerDoctor"-->
+                                    <!--                                android:layout_width="match_parent"-->
+                                    <!--                                android:layout_height="wrap_content"-->
+                                    <!--                                android:layout_marginLeft="20dp"-->
+                                    <!--                                android:layout_weight="1"-->
+                                    <!--                                android:hint="Select Doctor"-->
+                                    <!--                                android:textColor="#000000" />-->
+
+                                </LinearLayout>
+
+
+
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="false"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="0dp"
+                                    android:layout_marginBottom="0dp"
+                                    android:orientation="horizontal"
+                                    android:visibility="visible">
+
+                                    <LinearLayout
+                                        android:id="@+id/layoutInTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:orientation="horizontal"
+                                        android:paddingTop="5dp"
+
+                                        android:visibility="gone">
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:text="In Time " />
+
+                                        <TextView
+                                            android:id="@+id/tvInTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:gravity="center"
+                                            android:text=""
+
+                                            />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/layoutOutTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="10dp"
+                                        android:orientation="vertical"
+                                        android:paddingTop="5dp"
+                                        android:visibility="gone">
+
+                                        <ImageView
+
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/ic_time" />
+
+                                        <TextView
+                                            android:id="@+id/tvOutTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+
+                                            android:gravity="center"
+                                            android:text="Out Time" />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_marginTop="20dp"
+                                android:layout_marginRight="30dp"
+                                android:layout_marginLeft="30dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="false"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="20dp"
+                                android:orientation="horizontal"
+                                android:visibility="visible">
+
+                                <Button
+                                    android:id="@+id/btnCheckIn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/button_background"
+                                    android:text="Checkin"
+                                    android:visibility="gone"
+                                    android:textColor="@color/white"
+                                    />
+
+
+                                <Button
+                                    android:id="@+id/btnCheckOut"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/button_background"
+                                    android:text="Checkout"
+                                    android:textColor="@color/white"
+                                    android:visibility="gone" />
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
                     <TextView
-                        android:id="@+id/name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-
-                        />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Designation: "
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/designation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Resign: "
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/resign"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Headquarter: "
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/hq"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_button"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="@dimen/cardview_default_elevation">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:background="@drawable/border_button"
-                    android:orientation="vertical">
-
-                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="5dp"
-                        android:text="My Visit"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20dp" />
+                        android:text="Attendance "
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
 
                     <View
+                        android:layout_margin="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:background="@color/colorAccent" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:text="current date"
-                            android:textSize="14dp"
-
-                            />
-
-                        <TextView
-                            android:id="@+id/txtCurrentDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:text="current date"
-                            android:textSize="14dp" />
-                    </LinearLayout>
+                        android:layout_height="1dp"
+                        android:background="@color/checkbox_stroke_color" />
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_marginBottom="20dp"
                         android:layout_gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:padding="8dp"
+                        android:textOff="Out"
+                        android:textOn="In"
+                        android:thumb="@drawable/thumb"
+                        app:showText="true"
+                        app:track="@drawable/track" />
+
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:background="@color/white"
+                        android:minHeight="120dp"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/layoutDepartment"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal"
-                            android:padding="5dp"
-                            android:visibility="visible"
-                            android:weightSum="3">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Department"
-
-                                android:textSize="18dp" />
-
-                            <Spinner
-                                android:id="@+id/spinnerDepartment"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
-                                android:layout_weight="1"
-                                android:hint="Select Department"
-                                android:textColor="#000000" />
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:id="@+id/layoutArea"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal"
-                            android:padding="5dp"
-                            android:visibility="visible"
-                            android:weightSum="3">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Area"
-                                android:textSize="18dp" />
-
-<!--                            <Spinner-->
-<!--                                android:id="@+id/spinnerArea"-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginLeft="20dp"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:hint="Select Area "-->
-<!--                                android:textColor="#000000" />-->
-                            <AutoCompleteTextView
-                                android:id="@+id/spinnerArea"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
-                                android:layout_weight="1"
-                                android:hint="Select Area"
-                                android:textColor="#000000" />
-                            <ImageView
-                                android:id="@+id/btnAreaList"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="10dp"
-                                android:src="@drawable/drop_down_arrow"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/layoutDoctor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal"
-                            android:padding="5dp"
-                            android:visibility="visible"
-                            android:weightSum="3">
-
-                            <TextView
-                                android:id="@+id/txtDeptType"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Doctor"
-                                android:textSize="18dp" />
-
-                            <AutoCompleteTextView
-                                android:id="@+id/spinnerDoctor"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="20dp"
-                                android:layout_weight="1"
-                                android:hint="Select Doctor"
-                                android:textColor="#000000" />
-                            <ImageView
-                                android:id="@+id/btnDocList"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:padding="10dp"
-                                android:src="@drawable/drop_down_arrow"/>
-<!--                            <Spinner-->
-<!--                                android:id="@+id/spinnerDoctor"-->
-<!--                                android:layout_width="match_parent"-->
-<!--                                android:layout_height="wrap_content"-->
-<!--                                android:layout_marginLeft="20dp"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:hint="Select Doctor"-->
-<!--                                android:textColor="#000000" />-->
-
-                        </LinearLayout>
-
-
-
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentBottom="false"
-                            android:layout_centerHorizontal="true"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="0dp"
-                            android:layout_marginBottom="0dp"
-                            android:orientation="horizontal"
-                            android:visibility="visible">
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:text="News Notice"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                            <LinearLayout
-                                android:id="@+id/layoutInTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:orientation="horizontal"
-                                android:paddingTop="5dp"
-
-                                android:visibility="gone">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:text="In Time " />
-
-                                <TextView
-                                    android:id="@+id/tvInTime"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:text=""
-
-                                    />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:id="@+id/layoutOutTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:orientation="vertical"
-                                android:paddingTop="5dp"
-                                android:visibility="gone">
-
-                                <ImageView
-
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/ic_time" />
-
-                                <TextView
-                                    android:id="@+id/tvOutTime"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-
-                                    android:gravity="center"
-                                    android:text="Out Time" />
-                            </LinearLayout>
-                        </LinearLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="false"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginBottom="30dp"
-                        android:orientation="horizontal"
-                        android:visibility="visible">
-
-                        <Button
-
-                            android:id="@+id/btnCheckIn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/border_button"
-                            android:text="Checkin"
-                            android:textColor="@color/colorPrimary"
-                            android:visibility="gone" />
-
-
-                        <Button
-                            android:id="@+id/btnCheckOut"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/border_button"
-                            android:text="Checkout"
-                            android:textColor="@color/colorPrimary"
-                            android:visibility="gone" />
-
-                    </LinearLayout>
-
 
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-            </ScrollView>
+            </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:background="@color/white"
-                android:minHeight="120dp"
-                android:orientation="vertical">
+        </ScrollView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:text="News Notice"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
-            </LinearLayout>
-        </LinearLayout>
+
 
     </RelativeLayout>
 
@@ -462,5 +553,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:backgroundTint="@color/white"
         app:menu="@menu/home_menu" />
+
 </androidx.drawerlayout.widget.DrawerLayout>

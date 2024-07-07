@@ -57,7 +57,8 @@
         <EditText
             android:id="@+id/name"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:background="@drawable/edt_border_line"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="10dp"
             android:layout_weight=".5"
@@ -70,7 +71,8 @@
         <EditText
             android:id="@+id/qty"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:background="@drawable/edt_border_line"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="10dp"
             android:layout_weight=".5"
@@ -127,7 +129,8 @@
         <EditText
             android:id="@+id/amount"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:background="@drawable/edt_border_line"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="10dp"
             android:layout_weight=".5"
@@ -140,7 +143,8 @@
         <EditText
             android:id="@+id/mrp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:background="@drawable/edt_border_line"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="10dp"
             android:layout_weight=".5"
@@ -184,7 +188,8 @@
         <EditText
             android:id="@+id/total"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
+            android:background="@drawable/edt_border_line"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="10dp"
             android:layout_weight=".5"

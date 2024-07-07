@@ -44,7 +44,8 @@
             <EditText
                 android:id="@+id/place"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
 
                 android:backgroundTint="@color/colorAccent"
@@ -66,7 +67,8 @@
             <EditText
                 android:id="@+id/from_Date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
                 android:focusable="false"
@@ -89,7 +91,8 @@
             <EditText
                 android:id="@+id/to_Date"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
                 android:focusable="false"
@@ -111,7 +114,8 @@
             <EditText
                 android:id="@+id/remark"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="45dp"
+                android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:backgroundTint="@color/colorAccent"
                 android:gravity="top|start"

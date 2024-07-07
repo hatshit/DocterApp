@@ -1,6 +1,8 @@
 package com.tac.reportingDemo.activity.chemist;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,6 +13,7 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -77,7 +80,13 @@ public class SelectChemistAreaForReportActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setTitle("Select Area");
+        mToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //toolbaar caolor
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
+
         adapter = new AreaAdapter(this, mList,3);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

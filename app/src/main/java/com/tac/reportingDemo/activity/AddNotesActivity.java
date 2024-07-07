@@ -6,6 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -505,8 +508,6 @@ public class AddNotesActivity extends AppCompatActivity {
                 Utils.makeToast("oops something went wrong!");
             }
         }) {
-
-
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
@@ -573,12 +574,14 @@ public class AddNotesActivity extends AppCompatActivity {
                     params.put("Address", "Can't Fetch Address!");
                     e.printStackTrace();
                 }
-
+/*
                 try {
+                    Log.d(TAG, "dataUrl: " + strImage);
+
                     params.put("checkout_image", strImage);
                 } catch (Exception e) {
                     params.put("checkout_image", "checkout_image :"+e.getMessage());
-                }
+                }*/
                 params.put("withwhom", whom.toLowerCase());
                 Log.d(TAG, "MUR DCR SUBMIT Params: " + params);
 
@@ -801,7 +804,11 @@ public class AddNotesActivity extends AppCompatActivity {
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("File DCR");
+        mToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white));
 //        getSupportActionBar().setTitle("Doctor DCR");
+        final Drawable upArrow = ContextCompat.getDrawable(this, R.drawable.abc_ic_ab_back_material);
+        upArrow.setColorFilter(ContextCompat.getColor(this, R.color.white), PorterDuff.Mode.SRC_ATOP);
+        getSupportActionBar().setHomeAsUpIndicator(upArrow);
 
     }
 
@@ -1026,56 +1033,39 @@ public class AddNotesActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             strImage = getEncoded64ImageStringFromBitmap(imageBitmap);
-            Log.e("1148", strImage);
-//            Resources r = this.getResources();
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//            imageBitmap.compress(Bitmap.CompressFormat.PNG, 50, baos); //bm is the bitmap object
-//            byte[] b = baos.toByteArray();
-//String encodedImage =(Base64.encodeToString(b, Base64.DEFAULT));
-
-//Log.e("NEWIMAGE",encodedImage);
-//if(encodedImage.length()>1){
-//    Toast.makeText(getApplicationContext(),"Image Captured",Toast.LENGTH_SHORT).show();
-//}
-//            encodedImage = Base64.encodeBytes(b);
-            //  imageView.setImageBitmap(imageBitmap);
-/*  March 6.03 PM
-            InputStream inputStream = new FileInputStream(); // You can get an inputStream using any I/O API
-            byte[] bytes;
-            byte[] buffer = new byte[8192];
-            int bytesRead;
-            ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-            try {
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    output.write(buffer, 0, bytesRead);
-                }
+            if(strImage.equals(""))
+            {
+                Log.e("SuccessImg","success "+ strImage);
+            }else {
+                Log.e("SuccessImg","error "+ strImage);
             }
-            catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            bytes = output.toByteArray();
-            String encodedString = Base64.encodeToString(bytes, Base64.DEFAULT);
-
-            Log.e("string64",encodedImage);
-*/
-
-//            Log.e("dev",strImage);
-
         }
-
     }
 
     public String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
-        byte[] byteFormat = stream.toByteArray();
+        boolean success = bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);  // or Bitmap.CompressFormat.JPEG
 
-        // Get the Base64 string
-        String imgString = Base64.encodeToString(byteFormat, Base64.DEFAULT);
-        Toast.makeText(getApplicationContext(), "Converted", Toast.LENGTH_SHORT).show();
-        return imgString;
+        if (success) {
+            byte[] byteArray = stream.toByteArray();
+
+            // Encode byte array to Base64 string
+            String base64String = Base64.encodeToString(byteArray, Base64.NO_WRAP);
+
+            // Validate the length of the Base64 string
+            Log.d("Base64Image", "Base64 string length: " + base64String.length());
+
+            // Format Base64 string as data URL
+            String dataUrl = "data:image/png;base64," + base64String;  // or "data:image/jpeg;base64," for JPEG
+
+            // Print the data URL for debugging purposes
+            Log.d("Base64Image", "Data URL: " + dataUrl);
+
+            return dataUrl;
+        } else {
+            Log.e("Base64Image", "Failed to compress bitmap.");
+            return "";
+        }
     }
 }
 

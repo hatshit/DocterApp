@@ -829,7 +829,8 @@
                     <EditText
                         android:id="@+id/remark"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="45dp"
+                        android:background="@drawable/edt_border_line"
                         android:backgroundTint="@color/colorPrimary"
                         android:gravity="top|start"
                         android:inputType="textMultiLine"

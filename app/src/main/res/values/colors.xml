@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-        <color name="colorPrimary">#1565c0</color>
+    <color name="colorPrimary">#1565c0</color>
     <color name="colorPrimaryDark">#0d47a1</color>
-    <color name="colorAccent">#008080</color>
+    <color name="colorAccent">#0d47a1</color>
     <color name="white">#ffffff</color>
     <color name="darkGrey">#424242</color>
     <color name="lightGrey">#B6B6D2</color>
@@ -13,5 +13,6 @@
     <color name="textColor">#424242</color>
     <color name="checkbox_checked_color">#FF4081</color>
     <color name="checkbox_stroke_color">#BDBDBD</color>
+    <color name="offwhite">#FAF9F6</color>
 
 </resources>
