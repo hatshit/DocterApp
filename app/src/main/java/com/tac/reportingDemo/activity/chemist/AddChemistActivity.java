@@ -113,6 +113,10 @@ public class AddChemistActivity extends AppCompatActivity {
         sp = MySharedPreferences.getInstance(this);
         mRequestQue = MyVolley.getInstance().getRequestQueue();
         setToolbar();
+
+        mCity.setEnabled(false);
+        mState.setEnabled(false);
+
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +133,7 @@ public class AddChemistActivity extends AppCompatActivity {
         mAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showMap();
                 mAddress.setError(null);
             }
         });

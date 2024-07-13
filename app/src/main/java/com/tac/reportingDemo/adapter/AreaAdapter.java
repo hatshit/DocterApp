@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tac.reportingDemo.R;
 import com.tac.reportingDemo.activity.AddDoctorActivity;
+import com.tac.reportingDemo.activity.AddPlanAct;
 import com.tac.reportingDemo.activity.SelectDoctorActivity;
 import com.tac.reportingDemo.activity.SelectDoctorForReportActivity;
 import com.tac.reportingDemo.activity.chemist.AddChemistActivity;
@@ -133,6 +134,9 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.MyViewHolder> 
                 }
                 if (type == 5) {
                     ((AddChemistActivity) mContext).setArea(mList.get(position).getName());
+                }
+                if (type == 6) {
+                    ((AddPlanAct) mContext).setArea(position);
                 }
             }
         });

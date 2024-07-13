@@ -42,7 +42,8 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/placeFrom"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -64,7 +65,8 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/placeTo"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -87,7 +89,8 @@
 
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/workDate"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -110,7 +113,8 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/mode"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -132,7 +136,8 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/allowance"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -155,7 +160,8 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/misamount"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -178,7 +184,8 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:focusable="false"
                 android:id="@+id/deduction"
                 android:layout_width="match_parent"
@@ -204,7 +211,8 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/totalAmount"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -228,7 +236,8 @@
 
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/remark"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"

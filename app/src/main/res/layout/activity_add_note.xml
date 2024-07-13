@@ -164,6 +164,7 @@
                         android:drawablePadding="3dp"
                         android:textColor="@color/colorPrimary"/>
                     <EditText
+                        android:padding="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:background="@drawable/edt_border_line"

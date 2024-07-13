@@ -26,6 +26,7 @@ import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +37,10 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -128,6 +131,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -185,6 +189,9 @@ public class HomeActivity extends AppCompatActivity implements
 
     @BindView(R.id.spinnerDoctor)
     AutoCompleteTextView spinnerDoctor;
+
+    @BindView(R.id.imgId)
+    RelativeLayout imgId;
     ArrayAdapter areaAdapter, doctorAdapter, departmentAdapter;
     AreaPojo doctorPojo;
     AreaPojo areaPojo;
@@ -645,6 +652,14 @@ public class HomeActivity extends AppCompatActivity implements
             }
         });
 
+        imgId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                showPopupMenu(imgId);
+            }
+        });
+
         getCheckin();
     }
 
@@ -1025,10 +1040,13 @@ public class HomeActivity extends AppCompatActivity implements
                                 Timestamp stamp = new Timestamp(dObj.getLong("locdate_In") * 1000);
                                 date = new Date(stamp.getTime());
 
-                                DateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyy hh:mm:a", java.util.Locale.getDefault());
-                                String out = outputFormat.format(date);
+                                // Using Calendar API
+                                Calendar calendar = Calendar.getInstance();
+                                SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MMM-yyyy hh:mm:a", Locale.getDefault());
+                                outputFormat.setTimeZone(TimeZone.getDefault()); // Set time zone explicitly
+                                String out1 = outputFormat.format(calendar.getTime());
 
-                                strCheckinTime = "" + out;
+                                strCheckinTime = "" + out1;
 
                                 tvInTime.setText(strCheckinTime);
                                 tvInTime.setVisibility(View.VISIBLE);
@@ -1668,5 +1686,33 @@ public class HomeActivity extends AppCompatActivity implements
         String imgString = Base64.encodeToString(byteFormat, Base64.DEFAULT);
         Toast.makeText(getApplicationContext(), "Converted", Toast.LENGTH_SHORT).show();
         return imgString;
+    }
+
+    private void showPopupMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        MenuInflater inflater = popupMenu.getMenuInflater();
+        inflater.inflate(R.menu.menu_item, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return onMenuItemSelected(item);
+            }
+        });
+        popupMenu.show();
+    }
+
+    private boolean onMenuItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startActivity(new Intent(HomeActivity.this,
+                        AddPlanAct.class));
+                // Handle settings click
+                return true;
+            case R.id.action_help:
+                // Handle help click
+                return true;
+            default:
+                return false;
+        }
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -44,6 +45,8 @@
 
 
             <EditText
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -63,6 +66,8 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
                 android:id="@+id/mobile"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -84,6 +89,8 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -103,6 +110,7 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/hospital"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -122,6 +130,8 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
                 android:id="@+id/dob"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -143,6 +153,8 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
                 android:id="@+id/qualification"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -162,6 +174,8 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
                 android:id="@+id/specialist"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -186,6 +200,8 @@
                 android:layout_height="wrap_content"
                 >
                 <EditText
+                    android:gravity="center_vertical"
+                    android:paddingStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_toLeftOf="@id/addArea"
                     android:id="@+id/area"
@@ -230,9 +246,12 @@
                 android:weightSum="10">
 
                 <EditText
+                    android:paddingStart="10dp"
+                    android:gravity="center_vertical"
                     android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
+                    android:focusable="false"
                     android:background="@drawable/edt_border_line"
                     android:layout_weight="7"
                     android:layout_marginTop="5dp"
@@ -240,8 +259,8 @@
 
                 <ImageView
                     android:id="@+id/locationMarker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
                     android:layout_weight="3"
                     android:src="@drawable/location_pin_blue"/>
 
@@ -262,11 +281,13 @@
 
             <EditText
                 android:id="@+id/city"
-
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
+                android:textColor="@color/black"
                 android:focusable="false"
                 android:maxLength="25"
                 android:textSize="16sp" />
@@ -284,9 +305,12 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
                 android:id="@+id/state"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:textColor="@color/black"
                 android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
                 android:maxLength="25"
@@ -305,11 +329,14 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:gravity="center_vertical"
+                android:paddingStart="10dp"
                 android:id="@+id/country"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@drawable/edt_border_line"
                 android:layout_marginTop="5dp"
+                android:textColor="@color/black"
                 android:maxLength="25"
                 android:textSize="16sp" />
 

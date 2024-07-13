@@ -122,6 +122,10 @@ public class AddDoctorActivity extends AppCompatActivity {
         mRequestQue = MyVolley.getInstance().getRequestQueue();
 
         setToolbar();
+
+        mCity.setEnabled(false);
+        mState.setEnabled(false);
+        mCountry.setEnabled(false);
         mDOB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,6 +151,7 @@ public class AddDoctorActivity extends AppCompatActivity {
         mAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showMap();
                 mAddress.setError(null);
             }
         });

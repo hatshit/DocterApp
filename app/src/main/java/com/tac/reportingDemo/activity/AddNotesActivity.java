@@ -574,14 +574,12 @@ public class AddNotesActivity extends AppCompatActivity {
                     params.put("Address", "Can't Fetch Address!");
                     e.printStackTrace();
                 }
-/*
-                try {
-                    Log.d(TAG, "dataUrl: " + strImage);
 
+              try {
                     params.put("checkout_image", strImage);
                 } catch (Exception e) {
                     params.put("checkout_image", "checkout_image :"+e.getMessage());
-                }*/
+                }
                 params.put("withwhom", whom.toLowerCase());
                 Log.d(TAG, "MUR DCR SUBMIT Params: " + params);
 
@@ -1033,39 +1031,19 @@ public class AddNotesActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             strImage = getEncoded64ImageStringFromBitmap(imageBitmap);
-            if(strImage.equals(""))
-            {
-                Log.e("SuccessImg","success "+ strImage);
-            }else {
-                Log.e("SuccessImg","error "+ strImage);
-            }
+            Log.e("1148", strImage);
         }
     }
 
     public String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        boolean success = bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);  // or Bitmap.CompressFormat.JPEG
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, stream);
+        byte[] byteFormat = stream.toByteArray();
 
-        if (success) {
-            byte[] byteArray = stream.toByteArray();
-
-            // Encode byte array to Base64 string
-            String base64String = Base64.encodeToString(byteArray, Base64.NO_WRAP);
-
-            // Validate the length of the Base64 string
-            Log.d("Base64Image", "Base64 string length: " + base64String.length());
-
-            // Format Base64 string as data URL
-            String dataUrl = "data:image/png;base64," + base64String;  // or "data:image/jpeg;base64," for JPEG
-
-            // Print the data URL for debugging purposes
-            Log.d("Base64Image", "Data URL: " + dataUrl);
-
-            return dataUrl;
-        } else {
-            Log.e("Base64Image", "Failed to compress bitmap.");
-            return "";
-        }
+        // Get the Base64 string
+        String imgString = Base64.encodeToString(byteFormat, Base64.DEFAULT);
+        Toast.makeText(getApplicationContext(), "Converted", Toast.LENGTH_SHORT).show();
+        return imgString;
     }
 }
 

@@ -42,7 +42,8 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -62,7 +63,8 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/mobile"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
@@ -83,7 +85,8 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
@@ -102,7 +105,8 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/firmName"
                 android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
@@ -126,7 +130,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 >
-                <EditText
+                 <EditText
+                android:paddingStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_toLeftOf="@id/addArea"
                     android:id="@+id/area"
@@ -169,12 +174,14 @@
                 android:orientation="horizontal"
                 android:weightSum="10">
 
-                <EditText
+                 <EditText
+                android:paddingStart="10dp"
                     android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_weight="7"
                     android:layout_marginTop="5dp"
                     android:layout_height="45dp"
+                     android:focusable="false"
                     android:background="@drawable/edt_border_line"
                     android:textSize="16sp" />
 
@@ -198,11 +205,13 @@
                 android:textSize="16sp"
                 />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/city"
                 android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_height="45dp"
+                 android:textColor="@color/black"
                 android:background="@drawable/edt_border_line"
                 android:focusable="false"
                 android:maxLength="25"
@@ -220,11 +229,13 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="16sp" />
 
-            <EditText
+             <EditText
+                android:paddingStart="10dp"
                 android:id="@+id/state"
                 android:layout_width="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_height="45dp"
+                 android:textColor="@color/black"
                 android:background="@drawable/edt_border_line"
                 android:maxLength="25"
                 android:textSize="16sp" />

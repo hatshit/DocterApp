@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -21,6 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activity.AddPlanAct"
+            android:exported="false" />
         <activity
             android:name=".activity.DCRReportActivity"
             android:exported="false" />
@@ -72,7 +79,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.tac.reportingDemo.activity.HomeActivity" />
         </activity>
-
         <activity
             android:name=".activity.chemist.AddChemistActivity"
             android:parentActivityName=".activity.HomeActivity">
@@ -249,7 +255,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.tac.reportingDemo.activity.SelectDoctorActivity" />
         </activity>
-
         <activity
             android:name=".activity.AddNotesActivity"
             android:parentActivityName=".activity.HomeActivity">
@@ -257,7 +262,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.tac.reportingDemo.activity.HomeActivity" />
         </activity>
-
         <activity
             android:name=".activity.SelectDoctorActivity"
             android:parentActivityName=".activity.SelectAreaActivity">
@@ -273,8 +277,6 @@
                 android:value="com.tac.reportingDemo.activity.HomeActivity" />
         </activity>
         <activity android:name=".activity.HomeActivity" />
-
-
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true">
@@ -290,8 +292,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCubA4i17VsTcoKSkgmgRzymJl5l9afDv8"/>
-
+            android:value="AIzaSyCubA4i17VsTcoKSkgmgRzymJl5l9afDv8" />
 
         <activity android:name=".activity.MapsActivity" />
     </application>
