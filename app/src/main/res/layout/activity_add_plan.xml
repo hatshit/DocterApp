@@ -35,9 +35,144 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="92dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="0dp"
+                android:drawablePadding="3dp"
+                android:text="Year "
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+
+            <RelativeLayout
+                android:background="@drawable/edt_border_line"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                >
+
+                <Spinner
+                    android:backgroundTint="@color/black"
+                    android:id="@+id/spinnerYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Select Year"
+                    android:spinnerMode="dialog"
+                    android:outlineSpotShadowColor="@color/black"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="3dp"
+                android:text="Month"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:background="@drawable/edt_border_line"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                >
+
+                <Spinner
+                    android:backgroundTint="@color/black"
+                    android:id="@+id/spinnerMonth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Select Month"
+                    android:textColor="#000000"
+                    android:spinnerMode="dialog"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="3dp"
+                android:text="Week"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:background="@drawable/edt_border_line"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                >
+
+                <Spinner
+                    android:backgroundTint="@color/black"
+                    android:id="@+id/spinnerWeek"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Select Week"
+                    android:textColor="#000000"
+                    android:spinnerMode="dialog"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="3dp"
+                android:text="Day"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:background="@drawable/edt_border_line"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                >
+
+                <Spinner
+                    android:backgroundTint="@color/black"
+                    android:id="@+id/spinnerDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Select Day"
+                    android:textColor="#000000"
+                    android:spinnerMode="dialog"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="3dp"
+                android:text="Date"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/doDate"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:layout_height="45dp"
+                android:hint="Select Date."
+                android:focusableInTouchMode="false"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/edt_border_line"
+                android:maxLength="25"
+                android:paddingStart="10dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_marginTop="15dp"
+                android:layout_width="92dp"
+                android:layout_height="24dp"
                 android:drawablePadding="3dp"
                 android:text="Department "
                 android:textColor="@color/colorPrimaryDark"
@@ -65,88 +200,6 @@
 
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:drawablePadding="3dp"
-                android:text="Month"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp" />
-
-            <RelativeLayout
-                android:background="@drawable/edt_border_line"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                >
-
-                <Spinner
-                    android:backgroundTint="@color/black"
-                    android:id="@+id/spinnerMonth"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Select Department"
-                    android:textColor="#000000"
-                    android:spinnerMode="dialog"
-                    android:textSize="20sp" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:drawablePadding="3dp"
-                android:text="Week"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp" />
-
-            <RelativeLayout
-                android:background="@drawable/edt_border_line"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                >
-
-                <Spinner
-                    android:backgroundTint="@color/black"
-                    android:id="@+id/spinnerWeek"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Select Department"
-                    android:textColor="#000000"
-                    android:spinnerMode="dialog"
-                    android:textSize="20sp" />
-
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:drawablePadding="3dp"
-                android:text="Day"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="16sp" />
-
-            <RelativeLayout
-                android:background="@drawable/edt_border_line"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                >
-
-                <Spinner
-                    android:backgroundTint="@color/black"
-                    android:id="@+id/spinnerDay"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Select Department"
-                    android:textColor="#000000"
-                    android:spinnerMode="dialog"
-                    android:textSize="20sp" />
-
-            </RelativeLayout>
-
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -159,7 +212,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/areaAddPlan"
+                android:id="@+id/areaName"
                 android:layout_width="match_parent"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
@@ -209,6 +262,7 @@
                 android:textSize="16sp" />
 
             <EditText
+                android:id="@+id/edtRemark"
                 android:padding="10dp"
                 android:textColor="@color/black"
                 android:layout_width="match_parent"
@@ -222,7 +276,7 @@
 
 
             <Button
-                android:id="@+id/submit"
+                android:id="@+id/submitAddPlan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"

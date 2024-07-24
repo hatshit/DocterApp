@@ -74,9 +74,6 @@ public class MyDoctorsActivity extends AppCompatActivity {
         } else {
             Utils.noInternetToast();
         }
-
-        
-
     }
 
     private void fetchData() {

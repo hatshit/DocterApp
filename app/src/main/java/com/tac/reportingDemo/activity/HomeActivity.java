@@ -34,6 +34,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,6 +55,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -101,9 +103,11 @@ import com.tac.reportingDemo.activity.chemist.SelectChemistAreaActivity;
 import com.tac.reportingDemo.activity.chemist.SelectChemistAreaForReportActivity;
 import com.tac.reportingDemo.adapter.AreaAdapter;
 import com.tac.reportingDemo.adapter.NewsAdapter;
+import com.tac.reportingDemo.adapter.ViewPlanAdapter;
 import com.tac.reportingDemo.network.JsonParsor;
 import com.tac.reportingDemo.network.MyVolley;
 import com.tac.reportingDemo.pojo.AreaPojo;
+import com.tac.reportingDemo.pojo.MyViewPlanPojo;
 import com.tac.reportingDemo.pojo.NewsPojo;
 import com.tac.reportingDemo.storage.Constants;
 import com.tac.reportingDemo.storage.ENDPOINTS;
@@ -192,6 +196,9 @@ public class HomeActivity extends AppCompatActivity implements
 
     @BindView(R.id.imgId)
     RelativeLayout imgId;
+
+    @BindView(R.id.inOoutattendance)
+    SwitchCompat  mInOoutattendance;
     ArrayAdapter areaAdapter, doctorAdapter, departmentAdapter;
     AreaPojo doctorPojo;
     AreaPojo areaPojo;
@@ -247,6 +254,16 @@ public class HomeActivity extends AppCompatActivity implements
     boolean isCheckIn = false;
     boolean isCheckOut = false;
 
+    @BindView(R.id.recyclerTodayPlan)
+    RecyclerView mrecyclerTodayPlan;
+
+    @BindView(R.id.txtEmty)
+    TextView mtxtEmty;
+
+    private ViewPlanAdapter adapterViewPlan;
+
+    private List<MyViewPlanPojo> mTodayViewPlanList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -254,6 +271,8 @@ public class HomeActivity extends AppCompatActivity implements
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         sp = MySharedPreferences.getInstance(this);
         ButterKnife.bind(this);
+
+
 
         subscribeToTopic();
         setSupportActionBar(mToolbar);
@@ -266,6 +285,7 @@ public class HomeActivity extends AppCompatActivity implements
         showDashboardData();
 
         mNavigation.setItemIconTintList(null);
+
 
         createLocationRequest();
 
@@ -598,7 +618,9 @@ public class HomeActivity extends AppCompatActivity implements
 
         doctorAdapter = new ArrayAdapter(HomeActivity.this, android.R.layout.simple_spinner_item);
         doctorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         getLocation();
+
         displayLocationSettingsRequest(this);
 
         fusedLocationClient = LocationServices
@@ -660,7 +682,58 @@ public class HomeActivity extends AppCompatActivity implements
             }
         });
 
-        getCheckin();
+        mInOoutattendance.setOnCheckedChangeListener(new SwitchCompat.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                long timestamp = System.currentTimeMillis() / 1000;
+                if (isChecked) {
+                    // Switch is on
+                   attendance("In");
+                    System.out.println("Switch is ON: " + mInOoutattendance.getTextOn());
+                } else {
+                    // Switch is off
+                    attendance("Out");
+                    System.out.println("Switch is OFF: " + mInOoutattendance.getTextOff());
+                }
+            }
+        });
+
+        /*.............Today ViewPLan..............*/
+        adapterViewPlan = new ViewPlanAdapter(this, mTodayViewPlanList);
+        mrecyclerTodayPlan.setLayoutManager(new LinearLayoutManager(this));
+
+      //  getCheckin();
+      //  checkNetworkAndFetchData();
+
+        performParallelCalls();
+    }
+
+    public  void performParallelCalls() {
+        Thread thread1 = new Thread(this::getCheckin);
+        Thread thread2 = new Thread(this:: checkNetworkAndFetchData);
+
+        thread1.start();
+        thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        String attendenceType = sp.getUserInfo(Constants.attemdence);
+        Log.d("Attendnedn",""+attendenceType);
+        if(attendenceType.equals("In")) {
+            mInOoutattendance.setChecked(true);
+        }else {
+            mInOoutattendance.setChecked(false);
+        }
     }
 
     void showSelectionPopup() {
@@ -690,7 +763,13 @@ public class HomeActivity extends AppCompatActivity implements
             if (which == 0) {
                 Intent intent = new Intent(this, AddNotesActivity.class);
                 intent.putExtra("OpenFor",strDeptID);
-                DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+             //   DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                outputFormat.setTimeZone(TimeZone.getDefault()); // Set time zone explicitly
+                String formattedDate = outputFormat.format(calendar.getTime());
+
                 intent.putExtra("area", areaPojo.getName());
                 sp.setUserInfo("areaName", areaPojo.getName());
                 sp.setUserInfo("areaId", areaPojo.getId());
@@ -699,8 +778,8 @@ public class HomeActivity extends AppCompatActivity implements
                 sp.addSamples("");
                 sp.setUserInfo("doctor", doctorPojo.getName());
                 sp.setUserInfo("doctorId", doctorPojo.getId());
-                intent.putExtra("date", outputFormat.format(date));
-                sp.setUserInfo("date", outputFormat.format(date));
+                intent.putExtra("date", formattedDate);
+                sp.setUserInfo("date", formattedDate);
                 startActivity(intent);
             } else if (which == 1) {
                 isCheckIn = false;
@@ -708,7 +787,11 @@ public class HomeActivity extends AppCompatActivity implements
 //                startActivity(new Intent(this, SelectAreaActivity.class));
                 if (areaPojo != null && doctorPojo != null) {
 
-                    DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+                  //  DateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault());
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    outputFormat.setTimeZone(TimeZone.getDefault()); // Set time zone explicitly
+                    String formattedDate = outputFormat.format(calendar.getTime());
                     Intent intent = new Intent(this, BillingActivity.class);
                     if (strDeptID.equals("2")) {
                         intent = new Intent(this, ChemistBillingActivity.class);
@@ -721,8 +804,8 @@ public class HomeActivity extends AppCompatActivity implements
                     sp.addSamples("");
                     sp.setUserInfo("doctor", doctorPojo.getName());
                     sp.setUserInfo("doctorId", doctorPojo.getId());
-                    intent.putExtra("date", outputFormat.format(date));
-                    sp.setUserInfo("date", outputFormat.format(date));
+                    intent.putExtra("date",formattedDate);
+                    sp.setUserInfo("date", formattedDate);
                     startActivity(intent);
 //                    finish();
 //                    someActivityResultLauncher.launch(intent);
@@ -1221,7 +1304,6 @@ public class HomeActivity extends AppCompatActivity implements
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.d("TAC", "MUR Send Loc ERROR: " + error.networkResponse.statusCode);
-
                 }
             }) {
                 @Override
@@ -1709,10 +1791,157 @@ public class HomeActivity extends AppCompatActivity implements
                 // Handle settings click
                 return true;
             case R.id.action_help:
+                startActivity(new Intent(HomeActivity.this,
+                        ViewPlanAct.class));
                 // Handle help click
                 return true;
             default:
                 return false;
         }
+    }
+
+
+
+    private void attendance(String strType) {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        outputFormat.setTimeZone(TimeZone.getDefault()); // Set time zone explicitly
+        String formattedDate = outputFormat.format(calendar.getTime());
+
+        Utils.showPB(mParent, mPb);
+        String url = strType.equalsIgnoreCase("In") ? ENDPOINTS.ADD_INATTENDANCE : ENDPOINTS.ADD_OUTATTENDANCE;
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Utils.hidePB(mParent, mPb);
+                        try {
+                            if (JsonParsor.isReqSuccesful(response)) {
+                                if(strType.equals("In"))
+                                {
+                                    sp.setUserInfo(Constants.attemdence, "In");
+                                    Utils.makeToast("In Successfully!");
+                                }else {
+                                    sp.setUserInfo(Constants.attemdence, "Out");
+                                    Utils.makeToast("Out Successfully!");
+                                }
+                            } else {
+                                Utils.makeToast(JsonParsor.simpleParser(response));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Utils.parsingErrorToast();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Utils.hidePB(mParent, mPb);
+                Utils.parsingErrorToast();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("RId", sp.getUserInfo(Constants.R_ID));
+                params.put("latitude", lat);
+                params.put("longitude",lon);
+                params.put("Address", getAddressFromLatLon(Double.parseDouble(lat),Double.parseDouble(lon)));
+                params.put("adate", formattedDate);
+                Log.d("inAttendence","inAttendence:"+params);
+                return params;
+            }
+        };
+        mRequestQue.add(request);
+    }
+
+    private String getAddressFromLatLon(double latitude, double longitude) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            if (addresses != null && !addresses.isEmpty()) {
+                Address address = addresses.get(0);
+                return address.getAddressLine(0); // Get the first address line
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    private void checkNetworkAndFetchData() {
+        if (Utils.isNetworkAvailable()) {
+            fetchData();
+        } else {
+            Utils.noInternetToast();
+        }
+    }
+
+    private void fetchData() {
+        // Define the date format
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Calendar currentDate = Calendar.getInstance();
+        String strCurrentDate = dateFormat.format(currentDate.getTime());
+
+        Utils.showPB(mrecyclerTodayPlan, mPb);
+        StringRequest request = new StringRequest(Request.Method.POST, ENDPOINTS.MY_DAILY_VIEW_PLAN, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                mTodayViewPlanList.clear();
+                Utils.hidePB(mrecyclerTodayPlan, mPb);
+                try {
+                    if (JsonParsor.isReqSuccesful(response)) {
+                        mtxtEmty.setVisibility(View.GONE);
+                        JSONObject object = new JSONObject(response);
+                        JSONArray dataArray = object.getJSONArray("Data");
+                        for (int i = 0; i < dataArray.length(); i++) {
+                            JSONObject data = dataArray.getJSONObject(i);
+                            MyViewPlanPojo pojo = new MyViewPlanPojo();
+                            int planIdValue = data.optInt("planId", 0);
+                            pojo.setType(Integer.toString(planIdValue));
+
+                            pojo.setPlanId(data.getString("planId"));
+                            pojo.setAreaname(data.getString("areaname"));
+                            pojo.setName(data.getString("Name"));
+                            pojo.setYear(data.getString("year"));
+                            pojo.setMonth(data.getString("month"));
+                            pojo.setWeek(data.getString("week"));
+                            pojo.setDay(data.getString("day"));
+                            pojo.setRemark(data.getString("remark"));
+                            pojo.setPlandate(data.getString("Plandate"));
+
+                            int typeValue = data.optInt("type", 0);
+                            pojo.setType(Integer.toString(typeValue));
+
+                            mTodayViewPlanList.add(pojo);
+                        }
+                        mrecyclerTodayPlan.setAdapter(adapterViewPlan);
+                        adapterViewPlan.notifyDataSetChanged();
+                    } else {
+                        mtxtEmty.setVisibility(View.VISIBLE);
+                        // Utils.makeToast("No Data Available");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                  //  Utils.parsingErrorToast();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Utils.hidePB(mrecyclerTodayPlan, mPb);
+              //  Utils.parsingErrorToast();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Rid", sp.getUserInfo(Constants.R_ID));
+                params.put("adate",strCurrentDate);
+                return params;
+            }
+        };
+        mRequestQue.add(request);
     }
 }

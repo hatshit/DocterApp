@@ -143,6 +143,11 @@ public class ReportDesignationActivity extends AppCompatActivity {
                 txtEmploye.setBackgroundResource(R.drawable.button_background);
                 txtSelf.setBackgroundResource(R.drawable.btn_line_border);
                 layoutArea.setVisibility(View.GONE);
+
+                tvFromDate.setText("Select From Date");
+                tvToDate.setText("Select To Date");
+
+                rgType.clearCheck();
             }
         });
 

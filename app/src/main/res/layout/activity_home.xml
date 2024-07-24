@@ -163,6 +163,46 @@
 
                     </androidx.cardview.widget.CardView>
 
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="10dp"
+                        android:layout_margin="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <RelativeLayout
+                            android:padding="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            >
+
+                            <TextView
+                                android:layout_marginStart="10dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="5dp"
+                                android:textStyle="bold"
+                                android:text="Attendance - "
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                android:id="@+id/inOoutattendance"
+                                android:layout_marginEnd="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp"
+                                android:textOff="Out"
+                                android:textSize="8dp"
+                                android:textOn="In"
+                                android:thumb="@drawable/thumb"
+                                app:showText="true"
+                                app:track="@drawable/track" />
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:layout_margin="10dp"
@@ -481,45 +521,7 @@
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <androidx.cardview.widget.CardView
-                        app:cardCornerRadius="10dp"
-                        android:layout_margin="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        >
 
-                        <RelativeLayout
-                            android:padding="5dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            >
-
-                            <TextView
-                                android:layout_marginStart="10dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="5dp"
-                                android:textStyle="bold"
-                                android:text="Attendance - "
-                                android:textColor="@color/black"
-                                android:textSize="16sp" />
-
-                            <androidx.appcompat.widget.SwitchCompat
-                                android:layout_marginEnd="20dp"
-                                android:layout_centerVertical="true"
-                                android:layout_alignParentRight="true"
-                                android:layout_width="wrap_content"
-                                android:layout_height="20dp"
-                                android:textOff="Out"
-                                android:textSize="8dp"
-                                android:textOn="In"
-                                android:thumb="@drawable/thumb"
-                                app:showText="true"
-                                app:track="@drawable/track" />
-
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:layout_margin="10dp"
@@ -571,16 +573,30 @@
 
                             </RelativeLayout>
 
-                            <TextView
-                                android:gravity="center"
-                                android:layout_gravity="center"
-                                android:background="@color/white"
+                           <!-- today plan-->
+                            <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="100dp"
-                                android:padding="5dp"
-                                android:text="No Recard"
-                                android:textColor="@color/black"
-                                android:textSize="20sp" />
+                                android:layout_height="wrap_content"
+                                >
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/recyclerTodayPlan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/txtEmty"
+                                    android:layout_centerInParent="true"
+                                    android:background="@color/white"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:text="No Recard"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp" />
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 

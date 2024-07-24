@@ -151,7 +151,8 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:padding="10dp"
-                android:src="@drawable/drop_down_arrow"/>
+                android:src="@drawable/drop_down_arrow"
+                />
 
         </LinearLayout>
 

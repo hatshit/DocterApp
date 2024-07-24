@@ -383,6 +383,7 @@ public class AddNoteActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Utils.hidePB(mParent, mPb);
+                Log.e("AddNoteerror","error"+error.getMessage());
                 Utils.makeToast("Oops! Something went wrong: " + error.getMessage());
             }
         }) {

@@ -24,15 +24,21 @@ public class    ENDPOINTS {
     public static final String DASHBOARD = BASE_URL + "app/dashboard/";
     public static final String GET_CHEMIST_DCR = BASE_URL + "app/allchemistreport/";
     public static final String ADD_DOCTOR = BASE_URL + "app/adddoctor/";
+    public static final String ADD_PLAN = BASE_URL + "app/addplan/";
+    public static final String ADD_INATTENDANCE = BASE_URL + "app/Inattendance/";
+    public static final String ADD_OUTATTENDANCE = BASE_URL + "app/Outattendance/";
     public static final String ADD_AREA = BASE_URL + "app/addarea/";
     public static final String ADD_CHEMIST = BASE_URL + "app/addchemist/";
     public static final String CHANGE_PASSWORD = BASE_URL + "app/changesecuritycode/";
     public static final String MY_DOCTORS = BASE_URL + "app/mydoctor/";
+    public static final String MY_VIEW_PLAN = BASE_URL + "app/allplanlists/";
+    public static final String MY_DAILY_VIEW_PLAN = BASE_URL + "app/dailyactivity/";
     public static final String MY_CHEMISTS = BASE_URL + "app/mychemist/";
     public static final String DELETE_DOCTOR_REPORT = BASE_URL + "app/deleteDoctorDCR/";
     public static final String DELETE_CHEMIST_REPORT = BASE_URL + "app/deletechemistDCR/";
     public static final String DELETE_CHEMIST = BASE_URL + "app/deletechemist/";
     public static final String DELETE_DOCTOR = BASE_URL + "app/deletedoctor/";
+    public static final String DELETE_PLAN = BASE_URL + "app/deleteplan/";
 
 
     public static String SUBMIT_DCR = BASE_URL + "app/addreport";

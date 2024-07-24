@@ -26,6 +26,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.ViewPlanAct"
+            android:exported="false" />
+        <activity
             android:name=".activity.AddPlanAct"
             android:exported="false" />
         <activity

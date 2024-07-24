@@ -1,6 +1,7 @@
 package com.tac.reportingDemo.activity;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -9,10 +10,13 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -41,6 +45,7 @@ import com.tac.reportingDemo.adapter.AreaAdapter;
 import com.tac.reportingDemo.adapter.DocterAdapterList;
 import com.tac.reportingDemo.network.JsonParsor;
 import com.tac.reportingDemo.network.MyVolley;
+import com.tac.reportingDemo.pojo.AddDoctorPojo;
 import com.tac.reportingDemo.pojo.AreaPojo;
 import com.tac.reportingDemo.storage.Constants;
 import com.tac.reportingDemo.storage.ENDPOINTS;
@@ -51,11 +56,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,7 +77,9 @@ public class AddPlanAct extends AppCompatActivity {
     @BindView(R.id.spinnerDepartmentAdd)
     Spinner spinnerDepartmentAdd;
 
-    @BindView(R.id.spinnerMonth)
+    @BindView(R.id.spinnerYear)
+    Spinner spinnerYear;
+  @BindView(R.id.spinnerMonth)
     Spinner spinnerMonth;
 
     @BindView(R.id.spinnerDay)
@@ -79,33 +90,47 @@ public class AddPlanAct extends AppCompatActivity {
 
     @BindView(R.id.edtDocter)
     EditText mDocter;
-    @BindView(R.id.areaAddPlan)
-    EditText mAreaAddPlan;
+    @BindView(R.id.areaName)
+    EditText mAreaName;
 
+    @BindView(R.id.edtRemark)
+    EditText medtRemark;
 
     @BindView(R.id.parent)
     LinearLayout mParent;
     @BindView(R.id.pb)
     ProgressBar mPb;
 
-    private List<AreaPojo> mDoctorList = new ArrayList<>();
+    @BindView(R.id.doDate)
+    TextView mdoDate;
+
+    @BindView(R.id.submitAddPlan)
+    Button mSubmit;
     private MySharedPreferences sp;
     private RequestQueue mRequestQue;
 
     // Example of dynamic data
     List<String> departMentList = List.of("Select department", "Doctor", "Chemist");
     List<String> weekList = List.of("Select Week", "1", "2", "3", "4");
-    List<String> DayList = List.of("Select Day", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
-    List<String> monthList = List.of("Select Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+    List<String> year = List.of("Select Year", "2024", "2025", "2026", "2027", "2028", "2029", "2030");
+    List<String> DayList = List.of("Select Day", "mon","tue","wed","thu","fri","sat","sun");
+
+    List<String> monthList = List.of("Select Month", "jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec");
 
     String strArea="";
+    String areId="";
 
     private DocterAdapterList drAdapter;
 
    private AreaAdapter adapter;
     List<AreaPojo> docterList = new ArrayList<>();
     List<AreaPojo> areaList = new ArrayList<>();
-    private String strDay="", strDepartMent="", strWeek="", strMonth="";
+    private String strDay="", strDepartMent="", strWeek="", strMonth="",stryear="",strdDate="";
+
+    private String strDepartMent_ID = "";
+    private String doctorId = "";
+    private SimpleDateFormat dateFormat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,35 +141,73 @@ public class AddPlanAct extends AppCompatActivity {
         mRequestQue = MyVolley.getInstance().getRequestQueue();
         strArea =  sp.getHq_ame(Constants.HQ_name);
 
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+
         setToolbar();
 
         drAdapter = new DocterAdapterList(AddPlanAct.this, docterList);
         adapter = new AreaAdapter(AddPlanAct.this, areaList, 6);
 
-        setSpinner(spinnerDepartmentAdd,departMentList);
-        setSpinner(spinnerWeek,weekList);
+        setSpinner(spinnerYear,year);
         setSpinner(spinnerMonth,monthList);
+        setSpinner(spinnerWeek,weekList);
         setSpinner(spinnerDay,DayList);
+        setSpinner(spinnerDepartmentAdd,departMentList);
 
-        initFuc();
+        mdoDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
+
+        mSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(stryear.isEmpty()) {
+                    Toast.makeText(AddPlanAct.this, "Please select year.", Toast.LENGTH_SHORT).show();
+                }else if(strMonth.isEmpty()){
+                    Toast.makeText(AddPlanAct.this, "Please select Month.", Toast.LENGTH_SHORT).show();
+                }else if(strWeek.isEmpty()){
+                    Toast.makeText(AddPlanAct.this, "Please select Week.", Toast.LENGTH_SHORT).show();
+                }else if(strDay.isEmpty()){
+                    Toast.makeText(AddPlanAct.this, "Please select Day.", Toast.LENGTH_SHORT).show();
+                }else if(strdDate.isEmpty()){
+                    Toast.makeText(AddPlanAct.this, "Please select Date.", Toast.LENGTH_SHORT).show();
+                }else if(strDepartMent.isEmpty()) {
+                    Toast.makeText(AddPlanAct.this, "Please select department.", Toast.LENGTH_SHORT).show();
+                }else if(mAreaName.getText().toString().isEmpty()){
+                    Toast.makeText(AddPlanAct.this, "Please select Area.", Toast.LENGTH_SHORT).show();
+                    mAreaName.setError(null);
+                }else if(mDocter.getText().toString().isEmpty()){
+                    Toast.makeText(AddPlanAct.this, "Please select Doctor.", Toast.LENGTH_SHORT).show();
+                    mDocter.setError(null);
+                }else {
+                   addPlan();
+                }
+            }
+        });
+
+        init();
     }
 
-    private void initFuc() {
-        mAreaAddPlan.setOnClickListener(new View.OnClickListener() {
+
+
+    private void init() {
+        mAreaName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showAreaDialog();
-               mAreaAddPlan.setError(null);
+                mAreaName.setError(null);
             }
         });
 
         mDocter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(strDepartMent.equals(""))
-                {
+                if(strDepartMent.isEmpty()) {
                     Toast.makeText(AddPlanAct.this, "Please select department", Toast.LENGTH_SHORT).show();
-                }else if(mAreaAddPlan.getText().toString().equals("")){
+                }else if(mAreaName.getText().toString().isEmpty()){
                     Toast.makeText(AddPlanAct.this, "Please select Area", Toast.LENGTH_SHORT).show();
                 }else {
                     showDocterDialog();
@@ -160,10 +223,33 @@ public class AddPlanAct extends AppCompatActivity {
                 String selectedDepartment = parent.getItemAtPosition(position).toString();
                 if (!selectedDepartment.equals("Select department")) {
                     strDepartMent =selectedDepartment;
+
+                    if(strDepartMent.equals("Chemist")) {
+                        strDepartMent_ID = "2";
+                    }else {
+                        strDepartMent_ID = "1";
+                    }
                     // Do something with the selected value
-                    Toast.makeText(getApplicationContext(), "Select Department: " + selectedDepartment, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "Select Department: " + selectedDepartment, Toast.LENGTH_SHORT).show();
                 }else {
                     strDepartMent ="";
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Handle case where nothing is selected, if needed
+            }
+        });
+
+        spinnerYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedWeek = parent.getItemAtPosition(position).toString();
+                if (!selectedWeek.equals("Select Year")) {
+                    stryear =selectedWeek;
+                    // Do something with the selected value
+                }else {
+                    stryear ="";
                 }
             }
             @Override
@@ -179,7 +265,6 @@ public class AddPlanAct extends AppCompatActivity {
                 if (!selectedWeek.equals("Select Week")) {
                     strWeek =selectedWeek;
                     // Do something with the selected value
-                    Toast.makeText(getApplicationContext(), "Selected Week: " + selectedWeek, Toast.LENGTH_SHORT).show();
                 }else {
                     strWeek ="";
                 }
@@ -197,7 +282,6 @@ public class AddPlanAct extends AppCompatActivity {
                 if (!selectedMonth.equals("Select Month")) {
                     strMonth =selectedMonth;
                     // Do something with the selected value
-                    Toast.makeText(getApplicationContext(), "Selected Month: " + selectedMonth, Toast.LENGTH_SHORT).show();
                 }else {
                     strMonth ="";
                 }
@@ -215,7 +299,6 @@ public class AddPlanAct extends AppCompatActivity {
                 if (!selectedDay.equals("Select Day")) {
                     strDay =selectedDay;
                     // Do something with the selected value
-                    Toast.makeText(getApplicationContext(), "Select Day: " + selectedDay, Toast.LENGTH_SHORT).show();
                 }else {
                     strDay ="";
                 }
@@ -307,15 +390,15 @@ public class AddPlanAct extends AppCompatActivity {
 
     public void setArea(int position) {
         dialog.dismiss();
-        String areId =areaList.get(position).getId();
+        areId =areaList.get(position).getId();
         strArea =areaList.get(position).getName();
-        mAreaAddPlan.setText(strArea);
+        mAreaName.setText(strArea);
         mDocter.setText("");
     }
 
     public void setDocter(int position) {
         dialog.dismiss();
-        String doctorId =areaList.get(position).getId();
+        doctorId =docterList.get(position).getId();
         String doctorName =docterList.get(position).getName();
         mDocter.setText(doctorName);
     }
@@ -423,14 +506,8 @@ public class AddPlanAct extends AppCompatActivity {
             params.put("city", strArea);
             params.put("Rid", sp.getUserInfo(Constants.R_ID));
             try{
-                if(strDepartMent.equals("Chemist"))
-                {
-                    params.put("Deptid","2");
-                }else {
-                    params.put("Deptid","1");
-                }
-            }catch (Exception e)
-            {
+                params.put("Deptid",strDepartMent_ID);
+            }catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -489,5 +566,97 @@ public class AddPlanAct extends AppCompatActivity {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         mRequestQue.add(request);
+    }
+
+
+    private void addPlan() {
+       Utils.showPB(mParent, mPb);
+        StringRequest request = new StringRequest(Request.Method.POST, ENDPOINTS.ADD_PLAN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Utils.hidePB(mParent, mPb);
+                        try {
+                            if (JsonParsor.isReqSuccesful(response)) {
+                                Utils.makeToast("Plan Added Successfully!");
+                            } else {
+                                Utils.makeToast(JsonParsor.simpleParser(response));
+                            }
+                            finish();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Utils.parsingErrorToast();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Utils.hidePB(mParent, mPb);
+                Utils.parsingErrorToast();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Rid", sp.getUserInfo(Constants.R_ID));
+                params.put("year", stryear);
+                params.put("Aid", areId);
+                params.put("Did", doctorId);
+                params.put("Type", strDepartMent_ID);
+                params.put("month", strMonth);
+                params.put("week", strWeek);
+                params.put("Dodate",strdDate);
+                params.put("day", strDay);
+                params.put("remark", medtRemark.getText().toString());
+                Log.d("AddPlan","AddPlan:"+params);
+                return params;
+            }
+        };
+        mRequestQue.add(request);
+  }
+
+    private void showDatePickerDialog() {
+        // Define the date format
+
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                AddPlanAct.this,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int selectedYear, int selectedMonth, int selectedDay) {
+                        // Format the selected date
+                        Calendar selectedDate = Calendar.getInstance();
+                        selectedDate.set(selectedYear, selectedMonth, selectedDay);
+                         strdDate = dateFormat.format(selectedDate.getTime());
+                        mdoDate.setText(strdDate);
+                    }
+                },
+                year, month, day
+        );
+
+        // Set the minimum date to the current date
+        datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+
+        datePickerDialog.show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Handle the back button click
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        onBackPressed();
     }
 }

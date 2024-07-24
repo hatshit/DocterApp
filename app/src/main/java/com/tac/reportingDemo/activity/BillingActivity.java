@@ -471,25 +471,17 @@ public class BillingActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+
                         Log.d(TAG, "MUR SUBMIT RES: " + response);
                         Utils.hidePB(mParent, mPb);
                         try {
                             if (JsonParsor.isReqSuccesful(response)) {
-                                JSONObject jsonResponse = new JSONObject(response);
-
-                                boolean successStatus = jsonResponse.optBoolean("status", false); // Assuming 'status' is the key for the success flag
-                                if (successStatus) {
-                                    Utils.makeToast("Report Submitted Successfully");
-                                    Intent intent = new Intent(BillingActivity.this, HomeActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
+                                Utils.makeToast("Report Submitted");
+                                Intent intent = new Intent(BillingActivity.this, HomeActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
 //                                setResult(Activity.RESULT_OK);
-                                    finish();
-                                } else {
-                                    // Handle case where status is false
-                                    String errorMessage = jsonResponse.optString("message", "Unknown error occurred");
-                                    Utils.makeToast("Failed to submit report: " + errorMessage);
-                                }
+                                finish();
                             } else {
                                 Utils.makeToast(JsonParsor.simpleParser(response));
                                 Intent intent = new Intent(BillingActivity.this, HomeActivity.class);
@@ -579,7 +571,7 @@ public class BillingActivity extends AppCompatActivity {
                 }
 
                 try {
-                    params.put("checkout_image", strImage);
+                    params.put("checkout_image", "");
                 } catch (Exception e) {
                     params.put("checkout_image", "checkout_image :"+e.getMessage());
                 }
