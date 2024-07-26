@@ -1,6 +1,7 @@
 package com.tac.reportingDemo.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -192,7 +193,8 @@ public class BillingActivity extends AppCompatActivity {
         mSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkDataAndSubmit();
+             //   checkDataAndSubmit();
+                checkLocationPermission();
             }
         });
 
@@ -571,7 +573,7 @@ public class BillingActivity extends AppCompatActivity {
                 }
 
                 try {
-                    params.put("checkout_image", "");
+                    params.put("checkout_image", strImage);
                 } catch (Exception e) {
                     params.put("checkout_image", "checkout_image :"+e.getMessage());
                 }
@@ -999,6 +1001,7 @@ public class BillingActivity extends AppCompatActivity {
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(BillingActivity.this,
                 Manifest.permission.CAMERA)) {
+
             // Log.e("dispalying request","Displaying camera permission rationale to provide additional context.");
         } else {
             ActivityCompat.requestPermissions(BillingActivity.this, new String[]{Manifest.permission.CAMERA},
@@ -1046,4 +1049,67 @@ public class BillingActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_BACKGROUND_LOCATION,
     };
+
+
+
+    /////////////////////
+    ////////////////
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+
+    private void checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+            // Permissions are not granted, request them
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    LOCATION_PERMISSION_REQUEST_CODE);
+        } else {
+            // Permissions are granted, proceed with location access
+            getLocation();
+        }
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                // Permissions were granted
+                getLocation();
+            } else {
+                // Permissions were denied
+                showPermissionDeniedMessage();
+            }
+        }
+    }
+
+    private void getLocation() {
+        // Code to access the location
+        checkDataAndSubmit();
+    }
+
+
+    private void showPermissionDeniedMessage() {
+        // Inform the user that the permissions were denied
+        new AlertDialog.Builder(this)
+                .setTitle("Permission Denied")
+                .setMessage("Location permissions are necessary for this feature. Please enable them in settings.")
+                .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Open app settings
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
 }

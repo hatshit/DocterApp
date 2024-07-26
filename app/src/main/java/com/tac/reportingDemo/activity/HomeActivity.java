@@ -410,16 +410,7 @@ public class HomeActivity extends AppCompatActivity implements
         btnCheckIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                isCheckIn = true;
-                isCheckOut = false;
-                if ((strAreaID.length() > 0) && (strDoctorID.length() > 0)&& (strDeptID.length() > 0)) {
-                    updateVisitStatus("1");
-                } else if (strAreaID.length() < 1) {
-                    Toast.makeText(getApplicationContext(), "Please select area", Toast.LENGTH_SHORT).show();
-                } else if (strDoctorID.length() < 1) {
-                    Toast.makeText(getApplicationContext(), "Please select doctor", Toast.LENGTH_SHORT).show();
-                }
+                captureImage();
             }
         });
         btnCheckOut.setOnClickListener(new View.OnClickListener() {
@@ -706,6 +697,18 @@ public class HomeActivity extends AppCompatActivity implements
       //  checkNetworkAndFetchData();
 
         performParallelCalls();
+    }
+
+    private void checkInPoint() {
+          isCheckIn = true;
+                isCheckOut = false;
+                if ((strAreaID.length() > 0) && (strDoctorID.length() > 0)&& (strDeptID.length() > 0)) {
+                    updateVisitStatus("1");
+                } else if (strAreaID.length() < 1) {
+                    Toast.makeText(getApplicationContext(), "Please select area", Toast.LENGTH_SHORT).show();
+                } else if (strDoctorID.length() < 1) {
+                    Toast.makeText(getApplicationContext(), "Please select doctor", Toast.LENGTH_SHORT).show();
+                }
     }
 
     public  void performParallelCalls() {
@@ -1573,6 +1576,8 @@ public class HomeActivity extends AppCompatActivity implements
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             strImage = getEncoded64ImageStringFromBitmap(imageBitmap);
             Log.e("1148", strImage);
+
+            checkInPoint();
 //            Resources r = this.getResources();
 //            ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //            imageBitmap.compress(Bitmap.CompressFormat.PNG, 50, baos); //bm is the bitmap object
@@ -1608,11 +1613,13 @@ public class HomeActivity extends AppCompatActivity implements
 */
 
 //            Log.e("dev",strImage);
-            if (isCheckIn) {
+
+
+           /* if (isCheckIn) {
                 updateVisitStatus("1");
             } else if (isCheckOut) {
                 updateVisitStatus("2");
-            }
+            }*/
 
         }
 
@@ -1727,36 +1734,85 @@ public class HomeActivity extends AppCompatActivity implements
         return address;
     }
 
-    public void captureImage() {
+    private void captureImage() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
-
             requestCameraPermission();
-
         } else {
-            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE);
-            } else {
-
-                ActivityCompat.requestPermissions(HomeActivity.this, new String[]{Manifest.permission.CAMERA},
-                        REQUEST_CAMERA);
-            }
-
+            launchCamera();
         }
     }
+
+
+    private void launchCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE);
+        } else {
+            Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     private void requestCameraPermission() {
-        // Log.e("request", "Camera permission has NOT been granted. Requesting permission.");
-
-        if (ActivityCompat.shouldShowRequestPermissionRationale(HomeActivity.this,
-                Manifest.permission.CAMERA)) {
-            // Log.e("dispalying request","Displaying camera permission rationale to provide additional context.");
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+            new AlertDialog.Builder(this)
+                    .setTitle("Camera Permission Needed")
+                    .setMessage("This app needs the Camera permission to capture images.")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(HomeActivity.this,
+                                    new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA);
+                        }
+                    })
+                    .create()
+                    .show();
         } else {
-            ActivityCompat.requestPermissions(HomeActivity.this, new String[]{Manifest.permission.CAMERA},
-                    REQUEST_CAMERA);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA);
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CAMERA) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                launchCamera();
+            } else {
+                boolean showRationale = ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA);
+                if (!showRationale) {
+                    // User has denied the permission and checked "Don't ask again"
+                    showSettingsDialog();
+                } else {
+                    Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    private void showSettingsDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Need Permissions")
+                .setMessage("This app needs permission to use the camera. You can grant them in app settings.")
+                .setPositiveButton("Go to Settings", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        openAppSettings();
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
+
+    private void openAppSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivity(intent);
+    }
+
 
 
     public String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
@@ -1766,7 +1822,6 @@ public class HomeActivity extends AppCompatActivity implements
 
         // Get the Base64 string
         String imgString = Base64.encodeToString(byteFormat, Base64.DEFAULT);
-        Toast.makeText(getApplicationContext(), "Converted", Toast.LENGTH_SHORT).show();
         return imgString;
     }
 
