@@ -1381,7 +1381,7 @@ public class HomeActivity extends AppCompatActivity implements
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Utils.parsingErrorToast();
+                      //  Utils.parsingErrorToast();
                     }
 
                 }
@@ -1389,7 +1389,7 @@ public class HomeActivity extends AppCompatActivity implements
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Utils.hidePB(mParent, mPb);
-                    Utils.parsingErrorToast();
+                   // Utils.parsingErrorToast();
                 }
             }) {
                 @Override
@@ -1885,14 +1885,14 @@ public class HomeActivity extends AppCompatActivity implements
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Utils.parsingErrorToast();
+                         //   Utils.parsingErrorToast();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Utils.hidePB(mParent, mPb);
-                Utils.parsingErrorToast();
+               // Utils.parsingErrorToast();
             }
         }) {
             @Override
